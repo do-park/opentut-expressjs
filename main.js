@@ -2,12 +2,13 @@ const express = require('express')
 const app = express()
 var fs = require('fs');
 var path = require('path');
-var qs = require('querystring');
 var bodyParser = require('body-parser');
 var sanitizeHtml = require('sanitize-html');
+var compression = require('compression');
 var template = require('./lib/template.js');
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(compression());
 
 app.get('/', function (request, response) {
   fs.readdir('./data', function (error, filelist) {
